@@ -1,3 +1,5 @@
 *.swp
 *.o
 
+dispatch-test
+dispatch-ada-test
