@@ -16,7 +16,7 @@ LDFLAGS+=-L/usr/local/lib -ldispatch
 .PHONY: clean test setup
 
 test: dispatch-test dispatch-ada-test
-	./dispatch-test
+	./dispatch-ada-test
 
 setup:
 	mkdir -p obj

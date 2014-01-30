@@ -9,7 +9,6 @@ int main(int argc, char **argv) {
 	printf(">>> Starting test\n");
 
 	dispatch_queue_t main = dispatch_get_main_queue();
-
 	/*
 	 * Dispatch 3 seconds from now. This will be queued serially after the
 	 * block below this which sleeps the entire thread, GCD main queue included
@@ -28,7 +27,7 @@ int main(int argc, char **argv) {
 
 	dispatch_async(main, ^{
 			printf("burp\n");
-			sleep(3);
+			sleep(1);
 			printf("ahem\n");
 			});
 

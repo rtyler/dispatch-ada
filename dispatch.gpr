@@ -27,11 +27,13 @@ project Dispatch is
    end Ide;
 
    package Compiler is
-      for Default_Switches ("ada") use ("-gnat12", "-gnatf", "-g", "-gnata");
+      for Default_Switches ("ada") use ("-gnat2012", "-gnatf", "-g", "-gnata");
    end Compiler;
 
    package Linker is
-      for Default_Switches ("ada") use ("-g");
+      for Default_Switches ("ada") use ("-g",
+                                        "-L/usr/local/lib",
+                                        "-ldispatch");
    end Linker;
 
 end Dispatch;
