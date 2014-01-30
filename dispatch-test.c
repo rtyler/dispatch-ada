@@ -14,11 +14,21 @@ int main(int argc, char **argv) {
 	 * Dispatch 3 seconds from now. This will be queued serially after the
 	 * block below this which sleeps the entire thread, GCD main queue included
 	 */
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (3 * NSEC_PER_SEC)), main, ^{ printf("dispatch_after\n"); });
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (4 * NSEC_PER_SEC)),
+				   main,
+				   ^{
+					printf("dispatch_after\n");
+					/* Including a termination task to exit out of the runloop */
+					dispatch_async(main, ^{
+							printf("#### DONE ####\n\n");
+							exit(0);
+							});
+
+					});
 
 	dispatch_async(main, ^{
 			printf("burp\n");
-			sleep(5);
+			sleep(3);
 			printf("ahem\n");
 			});
 
@@ -27,9 +37,6 @@ int main(int argc, char **argv) {
 			});
 
 	dispatch_main();
-
-
-	printf("#### DONE ####\n\n");
 
 	return 0;
 }
